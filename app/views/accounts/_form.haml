@@ -1,0 +1,11 @@
+= simple_form_for(@account, :html=>{:class=>"well"}) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name
+    = f.input :critical_value
+    = f.input :notification, as: :boolean
+    = f.hidden_field :user_id, value: current_user.id
+  .form-actions
+    = f.button :submit
+
+

@@ -1,0 +1,17 @@
+%table.table.table-bordered.table-hover.table-striped
+  %thead
+    %tr
+      %th= sortable 'balance', 'Balance'
+      %th= sortable 'name', 'Account name'
+      %th= sortable 'critical_value', 'Critical value'
+      %th= sortable 'notification', 'Notify?'
+      %th
+  %tbody
+    - accounts.each do |account|
+      %tr
+        %td= account.balance
+        %td= account.name
+        %td= account.critical_value
+        %td= account.notification
+        %td= link_to 'edit', edit_account_path(account), :id => account.id, :title => 'edit', :class => 'btn btn-default'
+        %td= link_to 'show transactions', transaction_path(account), :title => 'edit', :class => 'btn btn-default'

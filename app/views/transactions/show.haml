@@ -1,0 +1,20 @@
+= render 'shared/logout'
+= render 'shared/error_message'
+
+%h1 Transactions:
+= link_to "Add new", new_transaction_path
+%table
+  %tr
+    %th= sortable 'amount', 'Amount'
+    %th= sortable 'purpose', 'Purpose'
+    %th= sortable 'category_id', 'Category'
+    %th= sortable 'account_id', 'Account'
+  -if @transactions.any?
+    - @transactions.each do |transaction|
+      %tr
+        %td= transaction.amount
+        %td= transaction.purpose
+        %td= transaction.category.name
+        %td= transaction.account.name
+  -else
+    No transaction for this account

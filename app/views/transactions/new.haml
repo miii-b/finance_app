@@ -1,0 +1,14 @@
+= render 'shared/logout'
+= render 'shared/error_message'
+
+%h1 Add transaction
+= simple_form_for(@transaction, url: transactions_path, html: { class: 'form-horizontal' }) do |f|
+  %fieldset
+    .row
+    = f.input :purpose
+    = f.input :amount
+    = f.association :account
+    = f.hidden_field :user_id, value: 1
+    = f.association :category
+    = f.button :submit, "Add", :class => 'btn btn-primary'
+= link_to 'Show accounts', accounts_path

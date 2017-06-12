@@ -1,0 +1,14 @@
+= render 'shared/logout'
+= render 'shared/error_message'
+
+.row
+  .col-md-6
+    %h1= 'Accounts'
+  .col-md-6
+    = link_to new_account_path , :class => 'btn btn-primary pull-right align-with-h1' do
+      %span.glyphicon.glyphicon-plus-sign
+      Add new account
+- if @accounts
+  = render 'accounts_table', :accounts => @accounts
+- else
+  No Accounts

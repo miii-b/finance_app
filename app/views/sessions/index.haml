@@ -1,0 +1,13 @@
+= render 'shared/logout'
+= render 'shared/error_message'
+
+%table
+  %tr
+    %th= sortable 'session_id', 'session id'
+    %th= sortable 'status', 'Status'
+    %th= sortable 'validity', 'Validity'
+  - @sessions.each do |session|
+    %tr
+      %td= session.session_id
+      %td= session.status
+      %td= session.validity 

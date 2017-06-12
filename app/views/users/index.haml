@@ -1,0 +1,13 @@
+= render 'shared/logout'
+= render 'shared/error_message'
+
+= link_to "Add new", new_user_path
+%h1 users
+%table
+  %tr
+    %th Name
+    %th Name
+  - @users.each do |user|
+    %tr
+      %td= user.name
+      %td= link_to "Delete", user_path(user), :method => 'delete'

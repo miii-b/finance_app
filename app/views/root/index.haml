@@ -1,0 +1,9 @@
+logged in as:
+= @current_user.name
+= link_to "Logout", logout_path
+
+%ul
+  %li= link_to 'Add transaction', new_transaction_path
+  %li= link_to 'Categories', categories_path
+  %li= link_to 'Sessions', sessions_path
+  %li= link_to 'Accounts', accounts_path

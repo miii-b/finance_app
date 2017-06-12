@@ -1,0 +1,24 @@
+= render 'shared/logout'
+= render 'shared/error_message'
+
+%h1 Categories
+= link_to "Add new", new_category_path
+= flash[:alert]
+= form_tag('/categories',  method: :get) do
+  = label_tag :from
+  = date_field_tag :from
+  = label_tag :to
+  = date_field_tag :to
+  = submit_tag 'select', class: "btn btn-success"
+
+%table
+  %tr
+    %th= sortable 'name', 'Name'
+    %th= sortable 'amount', 'Incomes sum'
+    %th=sortable 'amount', 'Expenses sum'
+  - @categories.each do |category|
+    %tr
+      %td= category.name
+      %td= category.get_incomes(@from, @to)
+      %td= category.get_expenses(Time.now, Time.now)
+      %td= link_to "Edit", edit_category_path(category)     
