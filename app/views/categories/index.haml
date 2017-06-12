@@ -20,5 +20,5 @@
     %tr
       %td= category.name
       %td= category.get_incomes(@from, @to)
-      %td= category.get_expenses(Time.now, Time.now)
+      %td= category.get_expenses(@from, @to)
       %td= link_to "Edit", edit_category_path(category)     
