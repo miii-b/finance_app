@@ -8,13 +8,18 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
+    if current_user.accounts.blank?
+      flash[:danger]  = 'You have to create account first'
+      redirect_to new_account_path
+    end
   end
+
   def create
     @transaction = Transaction.new(transaction_params)
     if @transaction.save
       update_balance(@transaction.account_id, @transaction.amount)
       check_critical
-      redirect_to transactions_path, notice: 'Transaction was successfully created'
+      redirect_to accounts_path, notice: 'Transaction was successfully created'
     else
       render :new
     end

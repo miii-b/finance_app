@@ -3,11 +3,13 @@
 
 %table
   %tr
+    %th= sortable 'user_id', 'user name'
     %th= sortable 'session_id', 'session id'
     %th= sortable 'status', 'Status'
     %th= sortable 'validity', 'Validity'
   - @sessions.each do |session|
     %tr
+      %td= session.user.name
       %td= session.session_id
       %td= session.status
       %td= session.validity 

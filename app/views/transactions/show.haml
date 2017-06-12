@@ -9,6 +9,7 @@
     %th= sortable 'purpose', 'Purpose'
     %th= sortable 'category_id', 'Category'
     %th= sortable 'account_id', 'Account'
+    %th= sortable 'created_at', 'When'
   -if @transactions.any?
     - @transactions.each do |transaction|
       %tr
@@ -16,5 +17,6 @@
         %td= transaction.purpose
         %td= transaction.category.name
         %td= transaction.account.name
+        %td= transaction.created_at
   -else
     No transaction for this account

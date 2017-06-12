@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
   before_action :require_user
   def index
-   @accounts = Account.order(prepare_sort_params)
+   @accounts = current_user.accounts.order(prepare_sort_params)
   end
 
   def show
