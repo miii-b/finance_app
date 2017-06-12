@@ -1,5 +1,5 @@
 class AddDefaultToAccount < ActiveRecord::Migration
   def change
-    change_column :accounts, :balance, :decimal, :default => 0
+    add_column :accounts, :balance, :decimal, :default => 0
   end
 end
