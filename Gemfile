@@ -43,8 +43,12 @@ group :development, :test do
   gem 'guard-rspec'
   gem "factory_girl_rails"
   gem "capybara"
+  gem 'shoulda-matchers', require: false
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'sidekiq'
+    gem 'sinatra', require: false
+gem 'slim'
 end
 
 group :development do
@@ -58,4 +62,6 @@ end
 group :production do
   gem 'pg'
 end
+
+
 

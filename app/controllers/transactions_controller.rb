@@ -38,7 +38,7 @@ class TransactionsController < ApplicationController
 
   def send_notification(user)
     #for production use some smtp config
-    #UserMailer.notification_email(user).deliver_later #for localhost
+    UserMailer.notification_email(user).deliver_later #for localhost
   end
 
   def update_balance(account_id, amount)
