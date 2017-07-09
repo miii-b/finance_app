@@ -1,0 +1,7 @@
+.form-group
+  = form_tag('/categories',  method: :get) do
+    = label_tag :from
+    = date_field_tag :from, class: 'form-control'
+    = label_tag :to
+    = date_field_tag :to
+    = submit_tag 'select', class: 'btn btn-default'

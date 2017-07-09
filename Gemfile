@@ -7,7 +7,7 @@ gem 'rails', '4.2.5.2'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
+# Use CoffeeScript for .coffee assert(test, "Failure message.")sets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -29,6 +29,10 @@ gem 'bootstrap-sass'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rails_12factor'
 
+gem 'sidekiq'
+gem 'sinatra', require: false
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -44,11 +48,12 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "capybara"
   gem 'shoulda-matchers', require: false
+  gem 'database_cleaner'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
-  gem 'sidekiq'
-    gem 'sinatra', require: false
-gem 'slim'
+  gem 'slim'
+
+
 end
 
 group :development do

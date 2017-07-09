@@ -1,18 +1,12 @@
-= render 'shared/logout'
-= render 'shared/error_message'
-
 %h1 Categories
-= link_to "Add new", new_category_path
-= flash[:alert]
-= form_tag('/categories',  method: :get) do
-  = label_tag :from
-  = date_field_tag :from
-  = label_tag :to
-  = date_field_tag :to
-  = submit_tag 'select', class: "btn btn-success"
+= link_to 'Add new', new_category_path, class: 'btn btn-default pull-right align-with-h1'
 
-%table
-  %tr
+= flash[:alert]
+
+= render 'date_range_form'
+
+%table.table.table-striped
+  %thead
     %th= sortable 'name', 'Name'
     %th= sortable 'amount', 'Incomes sum'
     %th=sortable 'amount', 'Expenses sum'
@@ -21,4 +15,4 @@
       %td= category.name
       %td= category.get_incomes(@from, @to)
       %td= category.get_expenses(@from, @to)
-      %td= link_to "Edit", edit_category_path(category)     
+      %td= link_to 'Edit', edit_category_path(category), class: 'btn btn-default'      

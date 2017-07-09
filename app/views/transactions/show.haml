@@ -1,8 +1,5 @@
-= render 'shared/logout'
-= render 'shared/error_message'
-
 %h1 Transactions:
-= link_to "Add new", new_transaction_path
+= link_to 'Add new', new_transaction_path, class: 'btn btn-default pull-right align-with-h1'
 %table
   %tr
     %th= sortable 'amount', 'Amount'

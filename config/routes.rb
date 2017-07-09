@@ -1,15 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'root#index'
-#  get 'categories/index'
- # get 'categories/edit'
- # get 'categories/new'
- 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-   #root 'welcome#index'
+  root 'accounts#index'
   resources :categories
   resources :transactions
   resources :accounts

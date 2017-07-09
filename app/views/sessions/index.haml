@@ -1,7 +1,6 @@
-= render 'shared/logout'
-= render 'shared/error_message'
-
-%table
+%h1 Sessions
+%table.table.table-hover.table-striped
+  %thead
   %tr
     %th= sortable 'user_id', 'user name'
     %th= sortable 'session_id', 'session id'

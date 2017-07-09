@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title FinanceApp
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    = render 'layouts/navigation' if current_user
+    .container
+      .row
+        .col-md-12
+          = render 'layouts/error_message'
+        .col-md-12
+          = yield
