@@ -10,7 +10,6 @@ class CategoriesController < ApplicationController
     redirect_to :categories
   end
 
-
   def index
     @categories = Category.order(prepare_sort_params)
     validate_dates(params)
