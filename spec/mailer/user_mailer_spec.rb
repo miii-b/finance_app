@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe UserMailer do
   describe 'reset_of_password' do
-    let(:user) { create :user}
+    let(:user) { create :user }
     let(:email) { UserMailer.notification_email(user) }
 
     it 'renders the sender email' do
@@ -16,6 +16,5 @@ describe UserMailer do
     it 'renders the receiver email' do
       expect(email.to).to eql([user.name])
     end
-
   end
 end

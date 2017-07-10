@@ -8,15 +8,13 @@ describe AccountsController, type: :controller do
   end
 
   it "create new account" do
-    post :create, "account": {"critical_value": "10.00", "user_id": user.id, "notification": true, "name": "test account"}
-    
+    post :create, "account": {"critical_value": "10.00", "user_id": user.id, "notification": 'true', "name": "test account"}
     expect(response).to redirect_to accounts_path
-
     expect(Account.first.name).to eq 'test account'
   end
 
   it "update account" do
-    account = create :account, critical_value: 10.00, user_id: user.id, notification: true, name: 'test account'
+    account = create :account, critical_value: 10.00, user_id: user.id, notification: 'true', name: 'test account'
     post :update, "account": { "name": "new account name" }, id: account.id
     
     expect(response).to redirect_to accounts_path

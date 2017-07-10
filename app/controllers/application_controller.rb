@@ -10,11 +10,11 @@ class ApplicationController < ActionController::Base
 
     ExpirationWorker.perform_in(5.minutes)
     if !actual_session || !actual_session.active? || actual_session.expired?
-      @current_user = nil  #not logged in
+      @current_user = nil # not logged in
     else
       actual_session.update(validity: Time.now + Session::SESSION_VALIDITY)
       @current_user = actual_session.user
-    end 
+    end
   end
 
   def logged_in?
@@ -22,8 +22,8 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    if !logged_in?
-      flash[:danger] = "You must be logged in to perform that action"
+    unless logged_in?
+      flash[:danger] = 'You must be logged in to perform that action'
       redirect_to new_login_path
     end
   end

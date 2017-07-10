@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def new 
     @user = User.new
-  end 
+  end
 
   def index
     @users = User.all
@@ -12,10 +12,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "Successfully created user!"
+      flash[:notice] = 'Successfully created user!'
       redirect_to new_login_path
     else
-      flash[:alert] = "Error creating new user!"
+      flash[:alert] = 'Error creating new user!'
       render :new
     end
   end
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     redirect_to users_path, notice: 'User was deleted'
   end
 
-   private
+  private
 
   def user_params
     params.require(:user).permit(:name, :password)

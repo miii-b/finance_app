@@ -1,23 +1,22 @@
 class CategoriesController < ApplicationController
   before_action :require_user
  
-  class InvalidDateRange < StandardError 
+  class InvalidDateRange < StandardError
   end
-
   rescue_from InvalidDateRange do
-    flash[:alert] = "Wrong range entered. Using default values"
+    flash[:alert] = 'Wrong range entered. Using default values'
 
     redirect_to :categories
   end
 
-  def index  
+  def index
     @categories = Category.order(prepare_sort_params)
     validate_dates(params)
   end
 
-  def new 
+  def new
     @category = Category.new
-  end 
+  end
 
   def edit
      @category = Category.find(params[:id])
@@ -26,15 +25,15 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:notice] = "Successfully created post!"
+      flash[:notice] = 'Successfully created post!'
       redirect_to categories_path
     else
-      flash[:alert] = "Error creating new post!"
+      flash[:alert] = 'Error creating new post!'
       render :new
     end
   end
 
-  def update 
+  def update
     @category = Category.find(params[:id])
     if @category.update_attributes(category_params)
       redirect_to categories_path, notice: 'Category was successfully updated'
@@ -50,24 +49,27 @@ class CategoriesController < ApplicationController
   end
 
   def validate_dates(params)
-    if params[:from]=='' || params[:from] == nil
-      @from = Time.at(0) 
-    else
-      @from = Time.parse(params[:from]).beginning_of_day  
-    end
+    validate_form(params[:from])
+    validate_to(params[:to])
+    raise InvalidDateRange if @from > @to
+  end
 
-    if params[:to]=='' || params[:to] == nil
-      @to = Time.now 
+  def validate_form(from)
+    if from == '' || from.nil?
+      # user default when empty
+      @from = Time.at(0)
     else
-      @to = Time.parse(params[:to]).end_of_day
+      # from = to, set whole day
+      @from = Time.parse(from).beginning_of_day
     end
+  end
 
-    raise InvalidDateRange if @from > @to 
+  def validate_to(to)
+    if to == '' || to.nil?
+      @to = Time.now
+    else
+      # from = to, set whole day
+      @to = Time.parse(to).end_of_day
+    end
   end
 end
-
-
-
-
-
-

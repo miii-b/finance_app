@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
   before_action :require_user
   def index
-   @accounts = current_user.accounts.order(prepare_sort_params)
+    @accounts = current_user.accounts.order(prepare_sort_params)
   end
 
   def show
@@ -34,11 +34,8 @@ class AccountsController < ApplicationController
   end
 
   private
+
   def account_params
     params.require(:account).permit(:name, :critical_value, :notification, :user_id)
   end
-
-
 end
-
-

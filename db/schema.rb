@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612053145) do
+ActiveRecord::Schema.define(version: 20170710163417) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
@@ -39,6 +39,10 @@ ActiveRecord::Schema.define(version: 20170612053145) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "sessions", ["id"], name: "index_sessions_on_id"
+  add_index "sessions", ["user_id", "status"], name: "index_sessions_on_user_id_and_status"
+  add_index "sessions", ["user_id"], name: "index_sessions_on_user_id"
 
   create_table "transactions", force: :cascade do |t|
     t.integer  "user_id"

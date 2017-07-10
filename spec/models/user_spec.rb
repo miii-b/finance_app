@@ -9,5 +9,4 @@ describe User, type: :model do
     user = build :user
     expect(user).to be_valid
   end
-
 end

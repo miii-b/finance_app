@@ -9,5 +9,4 @@ describe Account, type: :model do
     account = build :account
     expect(account).to be_valid
   end
-
 end

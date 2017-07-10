@@ -9,7 +9,7 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
     if current_user.accounts.blank?
-      flash[:danger]  = 'You have to create account first'
+      flash[:danger] = 'You have to create account first'
       redirect_to new_account_path
     end
   end
@@ -26,6 +26,7 @@ class TransactionsController < ApplicationController
   end
 
   private
+
   def transaction_params
     params.require(:transaction).permit(:user_id, :category_id, :account_id, :purpose, :amount)
   end
@@ -37,8 +38,8 @@ class TransactionsController < ApplicationController
   end
 
   def send_notification(user)
-    #for production use some smtp config
-    UserMailer.notification_email(user).deliver_later #for localhost
+    # for production use some smtp config
+    UserMailer.notification_email(user).deliver_later # for localhost
   end
 
   def update_balance(account_id, amount)
