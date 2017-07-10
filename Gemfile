@@ -31,6 +31,7 @@ gem 'rails_12factor'
 
 gem 'sidekiq'
 gem 'sinatra', require: false
+gem 'slim'
 
 
 # Use Unicorn as the app server

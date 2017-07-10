@@ -6,7 +6,10 @@
       = form_tag '/logins' do
         = label_tag :name
         = text_field_tag :name
+        .br
         = label_tag :password
         = password_field_tag :password
-        = submit_tag 'login'
+        .br
+        .btn
+          = submit_tag 'login'
     = link_to 'Create user', new_user_path

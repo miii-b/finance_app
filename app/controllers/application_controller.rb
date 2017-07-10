@@ -7,11 +7,10 @@ class ApplicationController < ActionController::Base
 
   def current_user
     actual_session = Session.find_by(session_id: session[:sid]) if session[:sid]
-    if !actual_session || !actual_session.active?
-      @current_user = nil  #not logged in 
-    elsif actual_session.validity < Time.now
-      actual_session.update(status: Session.statuses[:expired])
-      @current_user = nil
+
+    ExpirationWorker.perform_in(5.minutes)
+    if !actual_session || !actual_session.active? || actual_session.expired?
+      @current_user = nil  #not logged in
     else
       actual_session.update(validity: Time.now + Session::SESSION_VALIDITY)
       @current_user = actual_session.user
