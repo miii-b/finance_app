@@ -36,6 +36,10 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+   # for focus: true
+  config.filter_run :focus => true
+  config.run_all_when_everything_filtered = true
+
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
@@ -50,4 +54,34 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+
+  config.use_transactional_fixtures = false
+
+  config.before(:suite) do |example|
+    DatabaseCleaner.clean_with :truncation
+  end
+
+  config.before(:example) do |example|
+    if example.metadata[:truncation] || Capybara.current_driver != :rack_test
+      # examples with truncation: true and javascript examples
+
+      if $_last_strategy_was_transaction
+        # truncate now if there was transaction before
+        DatabaseCleaner.clean_with :truncation
+      end
+
+      DatabaseCleaner.strategy = :truncation
+      $_last_strategy_was_transaction = false
+    else
+      DatabaseCleaner.strategy = :transaction
+      $_last_strategy_was_transaction = true
+    end
+    DatabaseCleaner.start
+  end
+
+  config.after(:example) do
+    DatabaseCleaner.clean
+  end
+  
 end

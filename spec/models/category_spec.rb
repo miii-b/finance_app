@@ -22,10 +22,12 @@ describe Category, type: :model do
   end
 
   it '#get_incomes' do 
+    transaction_1.reload
     expect(category.get_incomes(@from,@to)).to eq(10.00)
 
   end
-  it '#get_expenses' do 
+  it '#get_expenses' do
+    transaction_2.reload
     expect(category.get_expenses(@from,@to)).to eq(-10.00)
   end
 end
